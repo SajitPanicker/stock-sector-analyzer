@@ -6,6 +6,11 @@ from utils.fundamentals import extract_fundamentals
 from utils.technicals import get_technicals
 from utils.financials import one_year_financial_summary
 from utils.rating import rating_engine
+import sys
+import os
+
+# Add project root to Python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 with open("data/sectors.json") as f:
     SECTORS = json.load(f)
