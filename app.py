@@ -25,7 +25,7 @@ if option == "Stock":
         financials = info.financials
 
         fundamental_data = extract_fundamentals(stock_info)
-        technicals = calculate_technicals(hist)
+        technicals = get_technicals(ticker)
         one_year_fin = one_year_financial_summary(financials)
         rating, score, reasons = rating_engine(fundamental_data, technicals)
 
