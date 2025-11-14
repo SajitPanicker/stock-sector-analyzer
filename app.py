@@ -3,7 +3,7 @@ import yfinance as yf
 import pandas as pd
 import json
 from utils.fundamentals import extract_fundamentals
-from utils.technicals import calculate_technicals
+from utils.technicals import get_technicals
 from utils.financials import one_year_financial_summary
 from utils.rating import rating_engine
 
