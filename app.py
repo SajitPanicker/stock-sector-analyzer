@@ -61,9 +61,17 @@ if option == "Sector":
                 stock_info = info.info
                 hist = info.history(period="1y")
 
-                fundamentals = extract_fundamentals(stock_info)
-                technicals = calculate_technicals(hist)
-                rating, score, _ = rating_engine(fundamentals, technicals)
+                fundamental_data = get_fundamentals(ticker)
+                technicals = get_technicals(ticker)
+
+                if technicals.get("history") is None:
+                    st.error("No price history found. Try another ticker, e.g., TCS.NS, INFY.NS, RELIANCE.NS")
+                else:
+                    rating, score, reasons = rating_engine(fundamental_data, technicals)
+                    st.success(f"Rating: {rating}")
+                    st.write("Reasons:")
+                    st.write(reasons)
+
 
                 ranked.append((stock, score))
             except:
