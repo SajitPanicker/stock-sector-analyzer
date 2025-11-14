@@ -1,14 +1,24 @@
+import yfinance as yf
 import pandas as pd
 
-def calculate_technicals(hist):
-    hist["SMA20"] = hist["Close"].rolling(20).mean()
-    hist["SMA50"] = hist["Close"].rolling(50).mean()
-    hist["SMA200"] = hist["Close"].rolling(200).mean()
+def get_technicals(ticker):
+    try:
+        stock = yf.Ticker(ticker)
+        hist = stock.history(period="1y")
 
-    delta = hist["Close"].diff()
-    gain = delta.where(delta > 0, 0).rolling(14).mean()
-    loss = -delta.where(delta < 0, 0).rolling(14).mean()
-    rs = gain / loss
-    hist["RSI"] = 100 - (100 / (1 + rs))
+        if hist.empty:
+            return {"history": None}
 
-    return hist
+        hist["SMA20"] = hist["Close"].rolling(20).mean()
+        hist["SMA50"] = hist["Close"].rolling(50).mean()
+        hist["SMA200"] = hist["Close"].rolling(200).mean()
+
+        return {
+            "history": hist,
+            "sma20": hist["SMA20"].iloc[-1],
+            "sma50": hist["SMA50"].iloc[-1],
+            "sma200": hist["SMA200"].iloc[-1],
+        }
+
+    except Exception as e:
+        return {"history": None}
