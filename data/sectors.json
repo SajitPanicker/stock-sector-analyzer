@@ -1,0 +1,23 @@
+{
+    "IT": [
+        "TCS.NS",
+        "INFY.NS",
+        "WIPRO.NS",
+        "HCLTECH.NS"
+    ],
+    "Banking": [
+        "HDFCBANK.NS",
+        "ICICIBANK.NS",
+        "KOTAKBANK.NS"
+    ],
+    "Pharma": [
+        "SUNPHARMA.NS",
+        "CIPLA.NS",
+        "DRREDDY.NS"
+    ],
+    "Auto": [
+        "TATAMOTORS.NS",
+        "MARUTI.NS",
+        "EICHERMOT.NS"
+    ]
+}
